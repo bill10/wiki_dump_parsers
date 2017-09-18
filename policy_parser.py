@@ -17,8 +17,10 @@ def parse(page):
         pass
     if empty:
         return res
+    if rev.text is None:
+        return res
     res.append(page.title)
-    indx=list(map(lambda x: x in rev.text, policy))
+    indx=np.array(list(map(lambda x: x in rev.text, policy)), dtype=bool)
     res.append(sum(indx))
     res.append(','.join(policy[indx]))
     return [res]
