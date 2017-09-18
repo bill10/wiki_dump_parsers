@@ -1,7 +1,8 @@
 # This parser will extract the following information for every page.
+import pandas as pd
+import numpy as np
 
 columns=['title','policy_count','policy_mentioned']
-
 
 # read policies
 df=pd.read_csv('wiki_policies.tsv',sep='\t')
