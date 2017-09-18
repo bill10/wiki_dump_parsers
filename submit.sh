@@ -12,7 +12,7 @@
 module add python
 export PYTHONPATH=/nas/longleaf/home/bill10/Library/lib/python3/:$PYTHONPATH
 
-# grab out filename from the array 
+# grab out filename from the array
 mapfile -t FILES < "all_dumps.txt"
 FILENAME=${FILES[$SLURM_ARRAY_TASK_ID]}
 
@@ -21,4 +21,4 @@ FILENAME=${FILES[$SLURM_ARRAY_TASK_ID]}
 #7z e $FILENAME
 
 # Run python script
-python3 policy_parser.py $FILENAME
+python3 main.py $FILENAME
