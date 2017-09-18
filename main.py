@@ -48,7 +48,7 @@ for page in dump:
         tmp=parser.parse(page)
         res.extend(tmp)
 
-print("{} pages are assessed".format(len(pages)))
+print("{} pages are assessed".format(len(res)))
 
 df  = pd.DataFrame.from_records(res, columns=parser.columns)
 df.to_csv(outfile, sep='\t', index=False, encoding='utf8')
