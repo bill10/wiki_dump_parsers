@@ -4,7 +4,7 @@ import io
 import pandas as pd
 import numpy as np
 import sys
-import policy_parser as parser
+import word_radius_parser as parser
 MAIN_SPACE=0
 TALK_SPACE=1
 
