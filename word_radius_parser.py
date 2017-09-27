@@ -26,7 +26,9 @@ def parse(page):
     if rev.text is None:
         return res
     res.append(page.title)
-    y=np.array([wordvec[word2id[x.strip()]] for x in rev.text.split() if x.strip() in word2id])
+    text=rev.text.lower()
+    text=''.join([i if i.isalnum() else ' ' for i in text])
+    y=np.array([wordvec[word2id[x.strip()]] for x in text.split() if x.strip() in word2id])
     res.append(len(y))
     centroid=np.mean(y,axis=0,keepdims=True)
     res.append(cdist(y,centroid).mean())
