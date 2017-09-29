@@ -27,11 +27,12 @@ def parse(page):
         return res
     text=rev.text.lower()
     text=''.join([i if i.isalnum() else ' ' for i in text])
-    y=np.array([wordvec[word2id[x.strip()]] for x in text.split() if x.strip() in word2id])
+    text=text.split()
+    y=np.array([wordvec[word2id[x.strip()]] for x in text if x.strip() in word2id])
     if len(y)==0:
         return res
     res.append(page.title)
-    res.append(len(y))
+    res.append(len(set(text)))
     centroid=np.mean(y,axis=0,keepdims=True)
-    res.append(cdist(y,centroid).mean())
+    res.append(cdist(y,centroid).median())
     return [res]
