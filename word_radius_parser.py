@@ -34,5 +34,5 @@ def parse(page):
     res.append(page.title)
     res.append(len(set(text)))
     centroid=np.mean(y,axis=0,keepdims=True)
-    res.append(cdist(y,centroid).median())
+    res.append(np.median(cdist(y,centroid)))
     return [res]
