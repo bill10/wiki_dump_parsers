@@ -4,13 +4,13 @@ import io
 import pandas as pd
 import numpy as np
 import sys
-import edit_info_parser as parser
+import tfidf_parser as parser
 MAIN_SPACE=0
 TALK_SPACE=1
 
 
 namespace=MAIN_SPACE
-title_file='social_issue_titles.txt'
+title_file='all_titles_10122017.txt'
 
 filename=sys.argv[1]
 infile=filename[:-3]
