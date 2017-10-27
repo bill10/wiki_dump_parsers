@@ -20,6 +20,8 @@ filename=sys.argv[1]
 infile=filename[:-3]
 outfile=filename[:-3]+'.tsv'
 
+print("Processing {}".format(infile))
+
 # read titles
 titles=set()
 with io.open(title_file,'r',encoding='utf8') as f:
