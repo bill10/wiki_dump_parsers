@@ -1,6 +1,9 @@
 #!/bin/bash
-# This file will read in a file containing all wiki dump names, and submit the batch file
-# Input: a text file, one dump per line.
+# This file will read in the necessary files, and submit the batch file to slurm for parsing
+# Input:
+#   1. a text file; one dump per line.
+#   2. a text file; each line corresponds to a page title. (The words in a title are separated by space; case insensitive)
+#   3. Namespace of wikipedia pages: TALK or MAIN (i.e., article)
 
 mapfile -t FILES < $1
 

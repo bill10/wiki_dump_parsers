@@ -4,13 +4,17 @@ import io
 import pandas as pd
 import numpy as np
 import sys
-import tfidf_parser as parser
-MAIN_SPACE=0
-TALK_SPACE=1
+import edit_info_parser as parser
 
 
-namespace=MAIN_SPACE
-title_file='all_titles_10122017.txt'
+if sys.argv[3].upper()=='MAIN':
+    namespace=0
+elif sys.argv[3].upper()=='TALK':
+    namespace=1
+else:
+    sys.exit("Wrong Namespace!")
+
+title_file=sys.argv[2]
 
 filename=sys.argv[1]
 infile=filename[:-3]

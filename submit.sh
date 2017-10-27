@@ -13,7 +13,7 @@ module add python
 export PYTHONPATH=/nas/longleaf/home/bill10/Library/lib/python3/:$PYTHONPATH
 
 # grab out filename from the array
-mapfile -t FILES < "all_dumps.txt"
+mapfile -t FILES < $1
 FILENAME=${FILES[$SLURM_ARRAY_TASK_ID]}
 
 # Copy files from Stash
@@ -21,7 +21,4 @@ FILENAME=${FILES[$SLURM_ARRAY_TASK_ID]}
 #7z e $FILENAME
 
 # Run python script
-#python3 main.py $FILENAME
-echo $1
-echo $2
-echo $3
+python3 main.py $FILENAME $2 $3
