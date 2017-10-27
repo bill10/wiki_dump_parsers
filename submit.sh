@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=wikiparser
-#SBATCH --output=%A_%a.out
+#SBATCH --output=${FILES[$SLURM_ARRAY_TASK_ID]}.out
 #SBATCH --error=%A_%a.err
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
