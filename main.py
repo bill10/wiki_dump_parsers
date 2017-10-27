@@ -20,7 +20,7 @@ filename=sys.argv[1]
 infile=filename[:-3]
 outfile=filename[:-3]+'.tsv'
 
-print("Processing {}".format(infile))
+print("Processing {} pages in {}".format(sys.argv[3],infile))
 
 # read titles
 titles=set()
