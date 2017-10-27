@@ -12,5 +12,5 @@ N1=$(($N - 1))
 
 # now submit to SLURM
 if [ $N1 -ge 0 ]; then
-    sbatch --array=0-$N1 submit.sh
+    sbatch --array=0-$N1 submit.sh $1 $2 $3
 fi

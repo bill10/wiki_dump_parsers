@@ -21,4 +21,7 @@ FILENAME=${FILES[$SLURM_ARRAY_TASK_ID]}
 #7z e $FILENAME
 
 # Run python script
-python3 main.py $FILENAME
+#python3 main.py $FILENAME
+echo $1
+echo $2
+echo $3
