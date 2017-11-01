@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 
-columns=['title','policy_count','policy_mentioned']
+columns=['title','policy','count']
 
 # read policies
 df=pd.read_csv('wiki_policies.tsv',sep='\t')
@@ -20,8 +20,8 @@ def parse(page):
         return res
     if rev.text is None:
         return res
-    res.append(page.title)
-    indx=np.array(list(map(lambda x: x in rev.text, policy)), dtype=bool)
-    res.append(sum(indx))
-    res.append(','.join(policy[indx]))
-    return [res]
+    for i in policy:
+        c=rev.text.count(i)
+        if c>0:
+            res.append([page.title, i, c])
+    return res
