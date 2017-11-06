@@ -1,13 +1,7 @@
 # This parser will extract the following information for every edit.
 import joblib
-import logging, traceback, sys, re
-from StringIO import StringIO
+import revision_differ as differ
 
-from diff_match_patch import diff_match_patch
-
-from xml_simulator import RecordingFileWrapper
-from wmf.dump.iterator import Iterator
-import wmf
 
 model_attack=joblib.load('models/attack_linear_char_oh_pipeline.pkl')
 model_aggres=joblib.load('models/aggression_linear_char_oh_pipeline.pkl')

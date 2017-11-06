@@ -19,7 +19,7 @@
 #
 ################################################################################
 import re
-from StringIO import StringIO
+from io import StringIO
 from diff_match_patch import diff_match_patch
 
 def tokenize(content):
