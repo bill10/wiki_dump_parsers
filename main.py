@@ -4,7 +4,7 @@ import io
 import pandas as pd
 import numpy as np
 import sys
-import edit_info_parser as parser
+import attack_parser as parser
 
 
 if sys.argv[3].upper()=='MAIN':
