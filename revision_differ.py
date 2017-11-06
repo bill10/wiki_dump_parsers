@@ -60,20 +60,12 @@ def hashTokens(tokens, hash2Token=[], token2Hash={}):
 def unhash(hashes, hash2Token, sep=''):
 	return sep.join(hash2Token[ord(h)-1] for h in hashes)
 
-def simpleDiff(content1, content2, tokenize=tokenize, sep='', report=[-1,0,1]):
+def simpleDiff(content1, content2, tokenize=tokenize, sep=''):
 	hashes1, h2t, t2h = hashTokens(tokenize(content1))
 	hashes2, h2t, t2h = hashTokens(tokenize(content2), h2t, t2h)
 
-	report = set(report)
-
 	dmp = diff_match_patch()
-
 	diffs = dmp.diff_main(hashes1, hashes2, checklines=False)
 
-	position = 0
-	for (ar,hashes) in diffs:
-		content = unhash(hashes,h2t,sep=sep)
-		if ar in report:
-			yield position, ar, content
-
-		if ar != -1: position += len(content)
+	added=' '.join([unhash(hashes,h2t,sep=sep) for (ar,hashes) in diffs if ar==1])
+	return added
