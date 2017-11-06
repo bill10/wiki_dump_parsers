@@ -28,9 +28,9 @@ def parse(page):
                 tmp.append(model_attack.predict_proba([currRev])[0][1])
                 tmp.append(model_aggres.predict_proba([currRev])[0][1])
         else:
-            # diff(currRev,lastRev)
-            tmp.append(model_attack.predict_proba([currRev])[0][1])
-            tmp.append(model_aggres.predict_proba([currRev])[0][1])
+            added=differ(lastRev,currRev)
+            tmp.append(model_attack.predict_proba([added])[0][1])
+            tmp.append(model_aggres.predict_proba([added])[0][1])
         lastRev = currRev
 
         if tmp:
