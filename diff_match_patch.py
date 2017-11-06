@@ -646,7 +646,7 @@ class diff_match_patch:
         longtext, the prefix of shorttext, the suffix of shorttext and the
         common middle.  Or None if there was no match.
       """
-      seed = longtext[i:i + len(longtext) / 4]
+      seed = longtext[i:i + int(len(longtext) / 4)]
       best_common = ''
       j = shorttext.find(seed)
       while j != -1:
@@ -668,9 +668,9 @@ class diff_match_patch:
         return None
 
     # First check if the second quarter is the seed for a half-match.
-    hm1 = diff_halfMatchI(longtext, shorttext, (len(longtext) + 3) / 4)
+    hm1 = diff_halfMatchI(longtext, shorttext, int((len(longtext) + 3) / 4))
     # Check again based on the third quarter.
-    hm2 = diff_halfMatchI(longtext, shorttext, (len(longtext) + 1) / 2)
+    hm2 = diff_halfMatchI(longtext, shorttext, int((len(longtext) + 1) / 2))
     if not hm1 and not hm2:
       return None
     elif not hm2:
