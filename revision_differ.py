@@ -48,12 +48,12 @@ def hashTokens(tokens, hash2Token=[], token2Hash={}):
 	hashBuffer = StringIO()
 	for t in tokens:
 		if t in token2Hash:
-			hashBuffer.write(unichr(token2Hash[t]+1))
+			hashBuffer.write(chr(token2Hash[t]+1))
 		else:
 			hashId = len(hash2Token)
 			hash2Token.append(t)
 			token2Hash[t] = hashId
-			hashBuffer.write(unichr(hashId+1))
+			hashBuffer.write(chr(hashId+1))
 
 	return (hashBuffer.getvalue(), hash2Token, token2Hash)
 
