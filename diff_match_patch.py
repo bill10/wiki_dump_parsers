@@ -284,13 +284,13 @@ class diff_match_patch:
     k1end = 0
     k2start = 0
     k2end = 0
-    for d in xrange(max_d):
+    for d in range(max_d):
       # Bail out if deadline is reached.
       if time.time() > deadline:
         break
 
       # Walk the front path one step.
-      for k1 in xrange(-d + k1start, d + 1 - k1end, 2):
+      for k1 in range(-d + k1start, d + 1 - k1end, 2):
         k1_offset = v_offset + k1
         if (k1 == -d or k1 != d and
             v1[k1_offset - 1] < v1[k1_offset + 1]):
@@ -319,7 +319,7 @@ class diff_match_patch:
               return self.diff_bisectSplit(text1, text2, x1, y1, deadline)
 
       # Walk the reverse path one step.
-      for k2 in xrange(-d + k2start, d + 1 - k2end, 2):
+      for k2 in range(-d + k2start, d + 1 - k2end, 2):
         k2_offset = v_offset + k2
         if (k2 == -d or k2 != d and
             v2[k2_offset - 1] < v2[k2_offset + 1]):
@@ -502,7 +502,7 @@ class diff_match_patch:
       diffs: Array of diff tuples.
       lineArray: Array of unique strings.
     """
-    for x in xrange(len(diffs)):
+    for x in range(len(diffs)):
       text = []
       for char in diffs[x][1]:
         text.append(lineArray[ord(char)])
@@ -1067,7 +1067,7 @@ class diff_match_patch:
     chars2 = 0
     last_chars1 = 0
     last_chars2 = 0
-    for x in xrange(len(diffs)):
+    for x in range(len(diffs)):
       (op, text) = diffs[x]
       if op != self.DIFF_INSERT:  # Equality or deletion.
         chars1 += len(text)
@@ -1329,7 +1329,7 @@ class diff_match_patch:
     bin_max = len(pattern) + len(text)
     # Empty initialization added to appease pychecker.
     last_rd = None
-    for d in xrange(len(pattern)):
+    for d in range(len(pattern)):
       # Scan for the best match each iteration allows for one more error.
       # Run a binary search to determine how far from 'loc' we can stray at
       # this error level.
@@ -1349,7 +1349,7 @@ class diff_match_patch:
 
       rd = range(finish + 1)
       rd.append((1 << d) - 1)
-      for j in xrange(finish, start - 1, -1):
+      for j in range(finish, start - 1, -1):
         if len(text) <= j - 1:
           # Out of range.
           charMatch = 0
@@ -1392,7 +1392,7 @@ class diff_match_patch:
     s = {}
     for char in pattern:
       s[char] = 0
-    for i in xrange(len(pattern)):
+    for i in range(len(pattern)):
       s[pattern[i]] |= 1 << (len(pattern) - i - 1)
     return s
 
@@ -1501,7 +1501,7 @@ class diff_match_patch:
     char_count2 = 0  # Number of characters into the text2 string.
     prepatch_text = text1  # Recreate the patches to determine context info.
     postpatch_text = text1
-    for x in xrange(len(diffs)):
+    for x in range(len(diffs)):
       (diff_type, diff_text) = diffs[x]
       if len(patch.diffs) == 0 and diff_type != self.DIFF_EQUAL:
         # A new patch starts here.
@@ -1674,7 +1674,7 @@ class diff_match_patch:
     """
     paddingLength = self.Patch_Margin
     nullPadding = ""
-    for x in xrange(1, paddingLength + 1):
+    for x in range(1, paddingLength + 1):
       nullPadding += chr(x)
 
     # Bump all the patches forward.
@@ -1733,7 +1733,7 @@ class diff_match_patch:
       # Python has the option of not splitting strings due to its ability
       # to handle integers of arbitrary precision.
       return
-    for x in xrange(len(patches)):
+    for x in range(len(patches)):
       if patches[x].length1 > patch_size:
         bigpatch = patches[x]
         # Remove the big old patch.
