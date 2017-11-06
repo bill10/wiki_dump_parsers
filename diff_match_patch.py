@@ -268,7 +268,7 @@ class diff_match_patch:
     # Cache the text lengths to prevent multiple calls.
     text1_length = len(text1)
     text2_length = len(text2)
-    max_d = (text1_length + text2_length + 1) / 2
+    max_d = int((text1_length + text2_length + 1) / 2)
     v_offset = max_d
     v_length = 2 * max_d
     v1 = [-1] * v_length
