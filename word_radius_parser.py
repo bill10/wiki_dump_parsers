@@ -4,6 +4,13 @@ import numpy as np
 import csv
 from scipy.spatial.distance import cdist
 
+import nltk
+nltk.download('stopwords')
+
+from nltk.corpus import stopwords
+stop_words= set(stopwords.words("english"))
+
+
 columns=['title','words','radius']
 
 # read word embeddings downloaded from https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md
@@ -27,7 +34,7 @@ def parse(page):
         return res
     text=rev.text.lower()
     text=''.join([i if i.isalnum() else ' ' for i in text])
-    text=text.split()
+    text = [word for word in text.split() if word not in stop_words]
     y=np.array([wordvec[word2id[x.strip()]] for x in text if x.strip() in word2id])
     if len(y)==0:
         return res
