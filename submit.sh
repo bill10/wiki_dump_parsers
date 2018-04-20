@@ -18,8 +18,8 @@ FILENAME=${FILES[$SLURM_ARRAY_TASK_ID]}
 
 # Copy files from Stash
 # wget http://stash.osgconnect.net/+bill10/Wiki/$FILENAME
-wget https://dumps.wikimedia.org/enwiki/20180401/$FILENAME
-7z e $FILENAME
+#wget https://dumps.wikimedia.org/enwiki/20180401/$FILENAME
+#7z e $FILENAME
 
 # Run python script
 python3 main.py $FILENAME $2 $3
