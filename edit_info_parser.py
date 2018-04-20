@@ -12,7 +12,7 @@ def parse(page):
             tmp.append(revision.user.text)
         else:
             tmp.append('')
-        if(revision.text is not None):
+        if (revision.text is not None):
             tmp.append(len(revision.text))
         else:
             tmp.append(0)
