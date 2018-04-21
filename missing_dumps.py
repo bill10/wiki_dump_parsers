@@ -11,7 +11,7 @@ files=glob.glob('*.tsv')
 for f in files:
     dumps.discard(f.replace('.tsv','.7z'))
 
-with open('all_dumps.txt','w') as outfile:
+with open('missing_dumps.txt','w') as outfile:
     for f in dumps:
         outfile.write(f+'\n')
 
