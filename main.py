@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import sys
 import edit_info_parser as parser
-
+from pathlib import Path
 
 if sys.argv[3].upper()=='MAIN':
     namespace=0
@@ -18,6 +18,10 @@ title_file=sys.argv[2]
 
 filename=sys.argv[1]
 infile=filename[:-3]
+test_file = Path(infile)
+if not test_file.is_file():
+    return
+
 outfile=filename[:-3]+'.tsv'
 
 print("Processing {} pages in {}".format(sys.argv[3],infile))
