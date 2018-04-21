@@ -20,7 +20,7 @@ filename=sys.argv[1]
 infile=filename[:-3]
 test_file = Path(infile)
 if not test_file.is_file():
-    return
+    sys.exit()
 
 outfile=filename[:-3]+'.tsv'
 
