@@ -10,7 +10,7 @@ Citation to be added.
 
 ## Usage
     python main.py dump_file title_file namespace
-* dump_file: the 7z dump file, which is normally downloaded from Wikipedia's dump site (e.g., https://dumps.wikimedia.org/enwiki/20190301/enwiki-20190201-pages-meta-history1.xml-p10p2066.7z). The file should be unzipped but its name still has the .7z extension.
+* dump_file: the 7z dump file, which is normally downloaded from Wikipedia's dump site (e.g., https://dumps.wikimedia.org/enwiki/20190301/enwiki-20190201-pages-meta-history1.xml-p10p2066.7z). The file should be unzipped but the input 7z should still has the .7z extension.
 * title_file: a text file containing the titles of the pages to be processed. One title per line. Words in a title are separated by space; case insensitive. An example file (all_titles.txt) is included.
 * namespace: namespace of the pages to be processed - TALK or MAIN (i.e., article).
 * main.py is a template. The actual parsing is done by various parsers. The appropriate parser should be imported into the script first (line 7). Only one parser is allowed each time.
