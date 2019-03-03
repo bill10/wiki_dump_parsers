@@ -25,13 +25,13 @@ Citation to be added.
 * word_radius_parser: extract page title, number of words, and radius of each page. It relies on the stopword dictionary from NLTK to remove stopwords. It uses the word embeddings from [fastText](https://fasttext.cc/docs/en/pretrained-vectors.html) to represent words as  numeric vectors; the radius of a page is then defined as the median distance from the words on the page to their centroid. Each line of the output corresponds to a page.  
 
 ## Parallel Processing
-A complete snapshot of Wikipedia normally consists of hundres of dumps, which can be processed in parallel to speed up the computation. A few scripts are included for clusters with SLURM.
-* download.sh: download all the 7z dump files listed in a text file, unzip them, and remove the compressed files. An example is shown below where the dumps_20161201.txt is a file contaning the names for all the 7z dumps for the snapshot on 20180401. One filename per line.
+A complete snapshot of Wikipedia normally consists of hundreds of dumps, which can be processed in parallel to speed up the computation. A few scripts are included for computing clusters with SLURM.
+* download.sh: download all the 7z dump files listed in a text file, unzip them, and remove the compressed files. An example is shown below where dumps_20161201.txt is a file contaning the names for all the 7z dumps for the snapshot on 20180401. One filen per line.
 
     ```
     ./download.sh dumps_20161201.txt
     ```
-* run_me.sh: submit the dump files to SLURM for parsing in parallel. It will submit the SLURM submission script (submit.sh) for each dump file in parallel. One can modify the submit.sh script for appropriate submission parameters. The output of this script (if ran successfully on the SLURM cluster) will be a lot of TSV files with each file corresponding to the parsing result of a dump file. Usage:
+* run_me.sh: submit the dump files and the parser to SLURM for parsing in parallel. It will submit the SLURM submission script (submit.sh) for each dump file in parallel. One can modify the submit.sh script for appropriate submission parameters. The output of this script (if ran successfully on the SLURM cluster) will be a lot of TSV files with each file corresponding to the parsing result of a dump file. Usage:
 
     ```
     ./run_me.sh dumps_file title_file namespace 
