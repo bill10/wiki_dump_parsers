@@ -36,8 +36,8 @@ A complete snapshot of Wikipedia normally consists of hundreds of dumps, which c
     ```
     ./run_me.sh dumps_file title_file namespace 
     ```
-** dumps_file: a text file containing the names of all the 7z dump file to be parsed. One file per line. A example file is included (dumps_20161201.txt). The 7z dumps should be unzipped. One can run the download.sh script on this list first to download and unzip and data.
-** title_file: a text file containing the titles of the pages to be processed. One title per line. Words in a title are separated by space; case insensitive. An example file (all_titles.txt) is included.
-** namespace: namespace of the pages to be processed - TALK or MAIN (i.e., article).
+  * dumps_file: a text file containing the names of all the 7z dump file to be parsed. One file per line. A example file is included (dumps_20161201.txt). The 7z dumps should be unzipped. One can run the download.sh script on this list first to download and unzip and data.
+  * title_file: a text file containing the titles of the pages to be processed. One title per line. Words in a title are separated by space; case insensitive. An example file (all_titles.txt) is included.
+  * namespace: namespace of the pages to be processed - TALK or MAIN (i.e., article).
 
 
