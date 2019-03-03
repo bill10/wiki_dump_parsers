@@ -11,7 +11,7 @@ Citation to be added.
 ## Usage
     python main.py dump_file title_file namespace
 * dump_file: the 7z dump file, which is normally downloaded from Wikipedia's dump site (e.g., https://dumps.wikimedia.org/enwiki/20190301/enwiki-20190201-pages-meta-history1.xml-p10p2066.7z). The file should be unzipped but its name still has the .7z extension.
-* title_file: a text file containing the titles of the pages to be processed. One title per line. Words in a title are separated by space; case insensitive.
+* title_file: a text file containing the titles of the pages to be processed. One title per line. Words in a title are separated by space; case insensitive. An example file (all_titles.txt) is included.
 * namespace: namespace of the pages to be processed - TALK or MAIN (i.e., article).
 * main.py is a template. The actual parsing is done by various parsers. The appropriate parser should be imported into the script first (line 7). Only one parser is allowed each time.
 * Output: a TSV file. The content of the file will be different for different parsers.
@@ -26,9 +26,18 @@ Citation to be added.
 
 ## Parallel Processing
 A complete snapshot of Wikipedia normally consists of hundres of dumps, which can be processed in parallel to speed up the computation. A few scripts are included for clusters with SLURM.
-* download.sh: download all the 7z dump files listed in a text file, unzip them, and remove the compressed files. Usage:
-    ./download.sh dumps_20180401.txt
+* download.sh: download all the 7z dump files listed in a text file, unzip them, and remove the compressed files. An example is shown below where the dumps_20161201.txt is a file contaning the names for all the 7z dumps for the snapshot on 20180401. One filename per line.
 
-where the dumps_20180401.txt is a file contaning the names for all the 7z dumps for the snapshot on 20180401. One filename per line.
+    ```
+    ./download.sh dumps_20161201.txt
+    ```
+* run_me.sh: submit the dump files to SLURM for parsing in parallel. It will submit the SLURM submission script (submit.sh) for each dump file in parallel. One can modify the submit.sh script for appropriate submission parameters. The output of this script (if ran successfully on the SLURM cluster) will be a lot of TSV files with each file corresponding to the parsing result of a dump file. Usage:
+
+    ```
+    ./run_me.sh dumps_file title_file namespace 
+    ```
+** dumps_file: a text file containing the names of all the 7z dump file to be parsed. One file per line. A example file is included (dumps_20161201.txt). The 7z dumps should be unzipped. One can run the download.sh script on this list first to download and unzip and data.
+** title_file: a text file containing the titles of the pages to be processed. One title per line. Words in a title are separated by space; case insensitive. An example file (all_titles.txt) is included.
+** namespace: namespace of the pages to be processed - TALK or MAIN (i.e., article).
 
 
