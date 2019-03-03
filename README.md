@@ -1,22 +1,34 @@
 # Wikipedia Dump Parsers
 
-A variety of parsers for extracting information from Wikipedia dump files. 
+A variety of parsers for extracting information from Wikipedia dump files. The parsers are used in the my paper 
+
+Citation to be added.
 
 ## Dependencies
 * mwxml
-* Each parser has its own dependencies
+* Each parser has its own dependencies (See details below).
 
 ## Usage
-    python main.py filename titles namespace
-* filename: the 7z dump file, which is normally downloaded from Wikipedia's dump site (e.g., https://dumps.wikimedia.org/enwiki/20190301/enwiki-20190201-pages-meta-history1.xml-p10p2066.7z). The file should be unzipped but its name still has the .7z extension.
-* titles: a text file containing the titles of the pages to be processed. One title per line. Words in a title are separated by space; case insensitive.
+    python main.py dump_file title_file namespace
+* dump_file: the 7z dump file, which is normally downloaded from Wikipedia's dump site (e.g., https://dumps.wikimedia.org/enwiki/20190301/enwiki-20190201-pages-meta-history1.xml-p10p2066.7z). The file should be unzipped but its name still has the .7z extension.
+* title_file: a text file containing the titles of the pages to be processed. One title per line. Words in a title are separated by space; case insensitive.
 * namespace: namespace of the pages to be processed - TALK or MAIN (i.e., article).
 * main.py is a template. The actual parsing is done by various parsers. The appropriate parser should be imported into the script first (line 7). Only one parser is allowed each time.
 * Output: a TSV file. The content of the file will be different for different parsers.
 
 ### Parsers
-* attack_parser.py: extract the page title, time, editor name, attack score, and aggressive score for each edit. It uses [wiki-detox](https://github.com/ewulczyn/wiki-detox) to assess the aggressive and attack scores. It relies on revision_differ.py from [wikihadoop](https://github.com/whym/wikihadoop) to extract the difference between two snapshots of a page.   
-* edit_info_parser.py: extract the page title, time, editor name, and current page length for each edit.
-* policy_parser.py: extract the page title, policy name, and number of counts of the policy for each page. It uses a pre-compiled list of Wikipedia policies and guidelines (wiki_policies.tsv). 
+* attack_parser.py: extract the page title, time, editor name, attack score, and aggressive score for each edit. It uses [wiki-detox](https://github.com/ewulczyn/wiki-detox) to assess the aggressive and attack scores. It relies on revision_differ.py from [wikihadoop](https://github.com/whym/wikihadoop) to extract the difference between two snapshots of a page. Each line of the output corresponds to an edit. 
+* edit_info_parser.py: extract the page title, time, editor name, and current page length for each edit. Each line of the output  corresponds to an edit.
+* policy_parser.py: extract the page title, policy name, and number of counts of the policy for each page. It uses a pre-compiled list of Wikipedia policies and guidelines (wiki_policies.tsv). Each line of the output corresponds to a (title,policy) combination.
+* quality_parser.py: assess the quality of each page. It uses [wikiclass](https://github.com/wikimedia/articlequality) and [revscoring](https://github.com/wikimedia/revscoring) to calculate the quality of each page. Each line of the output corresponds to page. 
+* tf_parser.py: calculate word frequncies for each page. It relies on the stopword dictionary from NLTK to remove stopwords. Each line of the output corresponds to a (page, word) combination.
+* word_radius_parser: extract the page title, number of words, and radius of each page. It relies on the stopword dictionary from NLTK to remove stopwords. It uses the word embeddings from [fastText](https://fasttext.cc/docs/en/pretrained-vectors.html) to represent every word as a vector; the radius of a page is then defined as the median distance from the words on the page to their centroid. Each line of the output corresponds to a page.  
+
+## Parallel Processing
+A complete snapshot of Wikipedia normally consists of hundres of dumps, which can be processed in parallel to speed up the computation. A few scripts are included for clusters with SLURM.
+* download.sh: download all the 7z dump files listed in a text file, unzip them, and remove the compressed files. Usage:
+    ./download.sh dumps_20180401.txt
+
+where the dumps_20180401.txt is a file contaning the names for all the 7z dumps for the snapshot on 20180401. One filename per line.
 
 
