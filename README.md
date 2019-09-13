@@ -1,8 +1,8 @@
 # Wikipedia Dump Parsers
 
-A variety of parsers for extracting information from Wikipedia dump files. The parsers are used in the my paper 
+A variety of parsers for extracting information from Wikipedia dump files. The parsers are used in the paper 
 
-Citation to be added.
+Feng Shi, Misha Teplitskiy, Eamon Duede & James A. Evans; The wisdom of polarized crowds; Nature Human Behaviour 3, 329–336 (2019).
 
 ## Dependencies
 * mwxml
